@@ -38,5 +38,5 @@ mongoose
     });
 })
 .catch((error: unknown) => {
-    console.error("DB connection erro:", error);
+    console.error("DB connection error:", error);
 });

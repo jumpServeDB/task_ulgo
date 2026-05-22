@@ -24,7 +24,7 @@ export const signupUser = async (req: Request, res: Response) => {
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
 
-    const created = await User.create({ email, password: hash } as Partial<IUser>);
+    const created = await User.create({ email, hashedPassword: hash } as Partial<IUser>);
     const token = createToken(created._id.toString());
     return res.status(201).json({ email: created.email, token });
   } catch (err) {

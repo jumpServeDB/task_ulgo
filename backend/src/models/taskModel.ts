@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Document, Schema, model } from "mongoose";
 
 export interface ITask {
   title: string;
@@ -8,7 +8,9 @@ export interface ITask {
   updatedAt?: Date;
 }
 
-const taskSchema = new Schema<ITask>(
+export interface ITaskDocument extends ITask, Document {}
+
+const taskSchema = new Schema<ITaskDocument>(
   {
     title: { type: String, required: true, trim: true },
     completed: { type: Boolean, default: false },
@@ -17,4 +19,4 @@ const taskSchema = new Schema<ITask>(
   { timestamps: true }
 );
 
-export default model<ITask>("Task", taskSchema);
+export default model<ITaskDocument>("Task", taskSchema);
