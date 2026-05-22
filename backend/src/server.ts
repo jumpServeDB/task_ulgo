@@ -8,35 +8,35 @@ import userRoute from "../src/routes/userRoute.js";
 
 const app = express();
 app.use(cors());
-const PORT = process.env.PORT ? Number(process.env.PORT) : 4000
+const PORT = process.env.PORT ? Number(process.env.PORT) : 4000;
 app.use(express.json());
 
 // log incoming requests
 app.use((req: Request, res: Response, next: NextFunction) => {
-    console.log(req.method, req.url);
-    if (req.body) {
-        console.log("body:", req.body);
-    } else {
-        console.log("No request body.");
-    }
-    next();
-})
+  console.log(req.method, req.url);
+  if (req.body) {
+    console.log("body:", req.body);
+  } else {
+    console.log("No request body.");
+  }
+  next();
+});
 
 // routes
 
 app.use("/api/user", userRoute);
-app.use("/api/tasks", taskRoute)
+app.use("/api/tasks", taskRoute);
 
 // connect to DB
 
-const mongoURI = process.env.MONGO_URI ?? "";
+const mongoURL = process.env.MONGO_URL ?? "";
 mongoose
-.connect(mongoURI)
-.then(() => {
+  .connect(mongoURL)
+  .then(() => {
     app.listen(PORT, () => {
-        console.log("connected to db, listening on port ", PORT);
+      console.log("connected to db, listening on port ", PORT);
     });
-})
-.catch((error: unknown) => {
+  })
+  .catch((error: unknown) => {
     console.error("DB connection error:", error);
-});
+  });
