@@ -3,6 +3,8 @@ import { Document, Schema, model } from "mongoose";
 export interface IUser {
   email: string;
   hashedPassword: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface IUserDocument extends IUser, Document {}

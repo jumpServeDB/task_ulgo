@@ -3,6 +3,8 @@ import "dotenv/config";
 import type { NextFunction, Request, Response } from "express";
 import express from "express";
 import mongoose from "mongoose";
+import taskRoute from "../src/routes/taskRoute.js";
+import userRoute from "../src/routes/userRoute.js";
 
 const app = express();
 app.use(cors());
@@ -22,8 +24,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 // routes
 
-// app.use("/api/user", userRoutes);
-// app.use("/api/tasks", taskRoutes)
+app.use("/api/user", userRoute);
+app.use("/api/tasks", taskRoute)
 
 // connect to DB
 
