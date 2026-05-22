@@ -3,8 +3,8 @@ import "dotenv/config";
 import type { NextFunction, Request, Response } from "express";
 import express from "express";
 import mongoose from "mongoose";
-import taskRoute from "../src/routes/taskRoute.js";
-import userRoute from "../src/routes/userRoute.js";
+import taskRoute from "./routes/taskRoute.js";
+import userRoute from "./routes/userRoute.js";
 
 const app = express();
 app.use(cors());
