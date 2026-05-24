@@ -1,12 +1,21 @@
 import AuthForm from "./AuthForm";
 import FormContainer from "./FormContainer";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import * as userServices from "../../services/user.ts";
+
+type LoginLocationState = { accountCreated?: boolean };
 
 const LoginPage = () => {
   const [error, setError] = useState("");
+  const location = useLocation() as { state?: LoginLocationState };
+  const navigate = useNavigate();
+
   return (
     <FormContainer>
+      {location.state?.accountCreated && (
+        <div className="text-emerald-400">Account Created. Please sign in.</div>
+      )}
       {error && (
         <div className="text-red-500 bg-zinc-300 rounded-sm px-4 py-1 border border-red-500">
           {error}
@@ -25,7 +34,19 @@ const LoginPage = () => {
         ]}
         submitButtonLabel="sign in"
         onSubmit={async (values) => {
-          console.log(`Login Click: ${values}`);
+          const response = await userServices.createSession({
+            email: values.email,
+            password: values.password,
+          });
+          const data = await response.json();
+
+          if (response.status === 200) {
+            setError("");
+            userServices.setSessionTokenStorage(data.token);
+            navigate("/");
+          } else {
+            setError(data.error);
+          }
         }}
       />
       <Link to="/signup" className="text-yellow-300/70 underline text-sm">

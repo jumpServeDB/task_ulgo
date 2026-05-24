@@ -6,6 +6,7 @@ import * as userServices from "../../services/user.ts";
 
 export const SignupPage = () => {
   const [error, setError] = useState("");
+  const navigate = useNavigate();
   return (
     <FormContainer>
       {error && (
@@ -31,8 +32,8 @@ export const SignupPage = () => {
         submitButtonLabel="sign up"
         onSubmit={async (values) => {
           console.log(`signup clicked`);
-          if (values.username.length < 4) {
-            setError("username is too short");
+          if (values.email.length < 4) {
+            setError("email is too short");
             return;
           }
           if (values.password.length < 4) {
@@ -48,11 +49,18 @@ export const SignupPage = () => {
             email: values.email,
             password: values.password,
           });
+          const data = await response.json();
 
           if (response.status === 201) {
             console.log("user created!");
+            setError("");
+            navigate("/login", {
+              state: {
+                accountCreated: true,
+              },
+            });
           } else {
-            console.log(response);
+            setError(data.error);
           }
         }}
       />
