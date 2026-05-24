@@ -1,11 +1,13 @@
 import RedirectToSignInIfSignedOut from "../../shared-components/RedirectToSignInIfSignedOut";
-import * as userServices from "../../services/user";
+import SessionContext from "../../contexts/SessionContext";
+import { useContext } from "react";
 
 export default function HomePage() {
+  const sessionContext = useContext(SessionContext);
   return (
     <RedirectToSignInIfSignedOut>
       <h1>I am home page</h1>
-      <button onClick={userServices.removeSessionTokenStorage}>Logout</button>
+      <button onClick={() => sessionContext.logOut()}>Logout</button>
     </RedirectToSignInIfSignedOut>
   );
 }
