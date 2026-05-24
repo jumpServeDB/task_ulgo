@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthForm from "./AuthForm";
 import FormContainer from "./FormContainer";
 import { useState } from "react";
+import * as userServices from "../../services/user.ts";
 
 export const SignupPage = () => {
   const [error, setError] = useState("");
@@ -15,8 +16,8 @@ export const SignupPage = () => {
       <AuthForm
         fields={[
           {
-            label: "username",
-            type: "text",
+            label: "email",
+            type: "email",
           },
           {
             label: "password",
@@ -43,6 +44,16 @@ export const SignupPage = () => {
             return;
           }
           setError("");
+          const response = await userServices.createUser({
+            email: values.email,
+            password: values.password,
+          });
+
+          if (response.status === 201) {
+            console.log("user created!");
+          } else {
+            console.log(response);
+          }
         }}
       />
       <Link to="/login" className=" text-yellow-300/70 underline text-sm">

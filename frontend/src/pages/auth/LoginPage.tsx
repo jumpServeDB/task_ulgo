@@ -15,8 +15,8 @@ const LoginPage = () => {
       <AuthForm
         fields={[
           {
-            label: "username",
-            type: "text",
+            label: "email",
+            type: "email",
           },
           {
             label: "password",

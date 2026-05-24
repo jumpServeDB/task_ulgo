@@ -47,7 +47,7 @@ const AuthForm = (props: AuthFormProps) => {
       ))}
       <button
         disabled={loading}
-        className="bg-zinc-700 text-white w-full rounded-lg py-2 mt-4 relative disabled:bg-stone-400"
+        className="bg-zinc-600 text-white w-full rounded-lg py-2 mt-4 relative disabled:bg-stone-400"
       >
         {submitButtonLabel}
         {loading && (
