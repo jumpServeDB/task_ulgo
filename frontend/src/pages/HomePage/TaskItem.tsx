@@ -11,7 +11,7 @@ export default function TaskItem(props: TaskItemProps) {
   const [isComplete, setIsComplete] = useState(false);
 
   return (
-    <div className="flex justify-between items-center text-zinc-100 text-xl border-2 border-amber-500 w-full px-6 py-4 my-2 rounded-md">
+    <div className="flex justify-between items-center text-zinc-100 bg-zinc-700 text-xl border-2 border-amber-500 w-full px-6 py-3 my-2 rounded-md">
       <div className="flex items-center">
         <Checkbox status={isComplete} setStatus={setIsComplete} />
         <div
@@ -20,7 +20,7 @@ export default function TaskItem(props: TaskItemProps) {
           {task.title}
         </div>
       </div>
-      <button className="text-sm text-slate-400 hover:text-red-500 flex justify-center cursor-pointer">
+      <button className="text-sm text-slate-400 hover:text-red-500 flex justify-center cursor-pointer p-2 items-center">
         <i className=" mr-1 fa-solid fa-trash text-base" />
         <div>remove</div>
       </button>
