@@ -45,7 +45,6 @@ export default function HomePage() {
   };
 
   const updateTask = async (id: string, completed: boolean) => {
-    setIsLoading(true);
     const response = await taskServices.updateTask(id, !completed);
     const data = await response.json();
     console.log(data);
