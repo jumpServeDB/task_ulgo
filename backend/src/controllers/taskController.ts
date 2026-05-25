@@ -85,7 +85,7 @@ export const updateTask = async (
     const task = await Task.findOneAndUpdate(
       { _id: objectId, owner: ownerId },
       { $set: updates },
-      { new: true },
+      { returnDocument: "after" },
     ).lean();
 
     if (!task)
