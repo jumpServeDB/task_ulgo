@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SignupPage } from "./pages/auth/SignupPage";
 import LoginPage from "./pages/auth/LoginPage";
-import HomePage from "./pages/auth/HomePage";
+import HomePage from "./pages/HomePage";
 import * as userServices from "./services/user";
 import { useState } from "react";
 import type { Session } from "./contexts/SessionContext";
