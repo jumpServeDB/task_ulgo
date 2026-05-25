@@ -4,10 +4,11 @@ import Checkbox from "../../shared-components/Checkbox";
 import clsx from "clsx";
 type TaskItemProps = {
   task: Task;
+  deleteTask: (id: string) => void;
 };
 
 export default function TaskItem(props: TaskItemProps) {
-  const { task } = props;
+  const { task, deleteTask } = props;
   const [isComplete, setIsComplete] = useState(false);
 
   return (
@@ -20,7 +21,10 @@ export default function TaskItem(props: TaskItemProps) {
           {task.title}
         </div>
       </div>
-      <button className="text-sm text-slate-400 hover:text-red-500 flex justify-center cursor-pointer p-2 items-center">
+      <button
+        className="text-sm text-slate-400 hover:text-red-500 flex justify-center cursor-pointer p-2 items-center"
+        onClick={() => deleteTask(task._id)}
+      >
         <i className=" mr-1 fa-solid fa-trash text-base" />
         <div>remove</div>
       </button>

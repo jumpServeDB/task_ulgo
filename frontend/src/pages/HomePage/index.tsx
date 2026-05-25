@@ -8,6 +8,7 @@ import LoadingSpinner from "../../shared-components/LoadingSpinner";
 export type Task = {
   title: string;
   status: boolean;
+  _id: string;
 };
 
 export default function HomePage() {
@@ -27,9 +28,16 @@ export default function HomePage() {
   }, []);
 
   const addTask = async (title: string) => {
-    setTasks(null);
     setIsLoading(true);
     const response = await taskServices.addTask(title);
+    const data = await response.json();
+    console.log(data);
+    getTasks();
+  };
+
+  const deleteTask = async (id: string) => {
+    setIsLoading(true);
+    const response = await taskServices.deleteTask(id);
     const data = await response.json();
     console.log(data);
     getTasks();
@@ -75,8 +83,8 @@ export default function HomePage() {
             {!isLoading &&
               tasks &&
               tasks.length > 0 &&
-              tasks.map((task: Task, idx: number) => (
-                <TaskItem task={task} key={idx} />
+              tasks.map((task: Task) => (
+                <TaskItem task={task} key={task._id} deleteTask={deleteTask} />
               ))}
 
             {!isLoading && tasks && tasks.length === 0 && (
