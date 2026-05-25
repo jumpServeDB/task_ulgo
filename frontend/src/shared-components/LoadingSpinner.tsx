@@ -1,6 +1,6 @@
 const LoadingSpinner = () => {
   return (
-    <div className="flex justify-center pt-40">
+    <div className="flex justify-center">
       <i className="fa-solid fa-spinner text-sky-600 text-3xl animate-spin" />
     </div>
   );
