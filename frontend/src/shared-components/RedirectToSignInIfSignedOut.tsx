@@ -1,6 +1,5 @@
 import { useContext, useEffect, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
-import * as userServices from "../services/user";
 import SessionContext from "../contexts/SessionContext";
 
 type RedirectToSignInIfSignedOutProps = {

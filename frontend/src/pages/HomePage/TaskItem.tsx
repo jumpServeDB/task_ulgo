@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { Task } from ".";
 import Checkbox from "../../shared-components/Checkbox";
 import clsx from "clsx";

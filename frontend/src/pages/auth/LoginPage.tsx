@@ -1,6 +1,6 @@
 import AuthForm from "./AuthForm";
 import FormContainer from "./FormContainer";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useContext, useState } from "react";
 import * as userServices from "../../services/user.ts";
 import RedirectHomeIfSignedIn from "../../shared-components/RedirectHomeIfSignedIn.tsx";
