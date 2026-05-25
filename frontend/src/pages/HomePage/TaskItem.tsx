@@ -5,18 +5,25 @@ import clsx from "clsx";
 type TaskItemProps = {
   task: Task;
   deleteTask: (id: string) => void;
+  updateTask: (id: string, status: boolean) => void;
 };
 
 export default function TaskItem(props: TaskItemProps) {
-  const { task, deleteTask } = props;
-  const [isComplete, setIsComplete] = useState(false);
+  const { task, deleteTask, updateTask } = props;
 
   return (
     <div className="flex justify-between items-center text-zinc-100 bg-zinc-700 text-xl border-2 border-amber-500 w-full px-6 py-3 my-2 rounded-md">
       <div className="flex items-center">
-        <Checkbox status={isComplete} setStatus={setIsComplete} />
+        <Checkbox
+          status={task.completed}
+          id={task._id}
+          setStatus={updateTask}
+        />
         <div
-          className={clsx("px-4 pt-2 pb-3 ", isComplete ? "text-zinc-500" : "")}
+          className={clsx(
+            "px-4 pt-2 pb-3 ",
+            task.completed ? "text-zinc-500" : "",
+          )}
         >
           {task.title}
         </div>

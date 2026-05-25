@@ -2,17 +2,20 @@ import clsx from "clsx";
 
 type CheckboxProps = {
   status: boolean;
-  setStatus: (status: boolean) => void;
+  id: string;
+  setStatus: (id: string, status: boolean) => void;
 };
 export default function Checkbox(props: CheckboxProps) {
-  const { status, setStatus } = props;
+  const { status, id, setStatus } = props;
   return (
     <label className="checkbox-label">
       <input
         type="checkbox"
         className="sr-only"
         checked={status}
-        onChange={() => setStatus(!status)}
+        onChange={() => {
+          setStatus(id, status);
+        }}
       />
       <span
         className={clsx(
